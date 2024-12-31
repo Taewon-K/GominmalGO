@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar (optional) */
+.chat-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.chat-scroll {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* 내가 작성성 */
+.navbar {
+  padding-top: 0.1rem;  /* 위쪽 여백을 줄여서 얇게 */
+  padding-bottom: 0.1rem;  /* 아래쪽 여백을 줄여서 얇게 */
+  height: auto;  /* 자동 높이로 설정하여 텍스트 크기에 맞춰지도록 */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;  /* 수평 정렬 */
+  padding-left: 40px;  /* 왼쪽 여백 추가 */
+}
+
+.navbar-brand img {
+  height: calc(1.5em + 0.75rem);
+  width: auto;
+  margin-right: 15px;  /* 아이콘과 텍스트 사이 공간 */
+}
+
+.navbar-brand span {
+  font-weight: bold;
+  font-size: 1.5rem;  /* 텍스트 크기 키우기 */
+}
+/* Additional custom styles if needed */

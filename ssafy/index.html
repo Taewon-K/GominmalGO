@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Application</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/styles.css">
+</head>
+
+
+<html>
+    <nav class="navbar navbar-dark" style="background-color: #6FF2AA;"> 
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="src/sprout (2).png" alt="Icon" style="height: calc(1.5em + 0.75rem); width: auto; margin-right: 10px;">
+                <span style="font-weight: bold;">고민말GO</span>
+              </a>
+          
+          
+        </div>
+      </nav>
+
+
+
+
+<body class="h-screen flex flex-col bg-gray-100">
+    
+
+    <!-- Main chat area -->
+    <main id="chat-container" class="flex-1 overflow-y-auto p-4 chat-scroll">
+        <!-- Messages will be dynamically inserted here -->
+    </main>
+
+    <!-- Input area with endpoint selector -->
+    <footer class="border-t border-gray-300 bg-white p-4">
+        <form id="message-form" class="flex items-center space-x-2">
+            <input type="text" id="user-input"
+                class="flex-1 border border-gray-300 rounded-md p-2 outline-none focus:border-blue-500"
+                placeholder="Type your message..." required />
+            <select id="api-selector" class="border border-gray-300 rounded-md p-2">
+                <option value="naive" selected>Naive (/chat)</option>
+                <option value="assistant">Assistant (/assistant)</option>
+            </select>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                Send
+            </button>
+        </form>
+    </footer>
+
+    <script type="module" src="./src/app.js"></script>
+</body>
+
+</html>
+
