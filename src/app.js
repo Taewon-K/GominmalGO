@@ -57,10 +57,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 const buttonContainer = document.createElement('div');
                 buttonContainer.className = 'button-container';
                 buttonContainer.innerHTML = `
-                    <button type="button" class="btn btn-info" id="btn-yes" href="https://gominmalgo.vercel.app/">처음으로</button>
-                    <button type="button" class="btn btn-Success" id="btn-no">지도보기</button>
+                    <button type="button" class="btn btn-info btn-home" id="btn-yes" href="https://gominmalgo.vercel.app/">처음으로</button>
+                    <button type="button" class="btn btn-Success btn-map" id="btn-no">지도보기</button>
                 `;
                 messageForm.appendChild(buttonContainer);
+
+                document.getElementById('btn-home').addEventListener('click', () => {
+                    window.location.href = 'https://gominmalgo.vercel.app/';
+                });
+                
+                document.getElementById('btn-map').addEventListener('click', () => {
+                    window.location.href = '/map';
+                });
+            
             }
         })
         .catch((error) => {
@@ -83,11 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('user-input').disabled = false;
     document.querySelector('button[type="submit"]').disabled = false;
 });
-
-    document.getElementById('btn-yes').addEventListener('click', () => {
-        window.location.href = 'https://gominmalgo.vercel.app/';
-    });
-    
-    document.getElementById('btn-no').addEventListener('click', () => {
-        window.location.href = '/map';
-    });
