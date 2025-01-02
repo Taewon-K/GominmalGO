@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 사용자 입력을 버블로 표시
         const userBubble = document.getElementById('user-bubble');
         const userInput = document.getElementById('user-input');
+        const systemBubble = document.getElementById('system-bubble');
         
         userBubble.textContent = message;
         userBubble.classList.remove('hidden');
@@ -26,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then((response) => {
             console.log(response);
-            const warningMessage = document.getElementById('warning-message');
-            const systemBubble = document.getElementById('system-bubble');
             const messageForm = document.getElementById('message-form');
             
             // 모든 타입에 대해 시스템 버블 표시
