@@ -83,3 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('user-input').disabled = false;
     document.querySelector('button[type="submit"]').disabled = false;
 });
+
+    document.getElementById('btn-yes').addEventListener('click', () => {
+        window.location.href = 'https://gominmalgo.vercel.app/';
+    });
+    
+    document.getElementById('btn-no').addEventListener('click', () => {
+        window.location.href = '/map';
+    });
