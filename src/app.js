@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const systemBubble = document.getElementById('system-bubble');
             
             systemBubble.classList.remove('hidden');
-            systemBubble.textContent = response.data.content;
+            systemBubble.textContent = response.data.context;
 
             // 타입별 배경색 설정
             const colors = {
@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const message = userInput.value;
         counsel(message);
-        userInput.value = ''; // 입력 필드 초기화
     });
 
     // axios 요청 전
