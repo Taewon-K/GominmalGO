@@ -37,4 +37,18 @@
   font-weight: bold;
   font-size: 1.5rem;  /* 텍스트 크기 키우기 */
 }
-/* Additional custom styles if needed */
+
+footer {
+  width: 100%; /* 너비를 100%로 설정 */
+  max-width: 600px; /* 최대 너비를 600px로 설정 */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  background-color: white;
+  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 20px; /* 화면 하단에서 20px 위로 이동 */
+  left: 50%; /* 화면의 가운데로 이동 */
+  transform: translateX(-50%); /* 정확히 가운데로 맞추기 */
+}
+/* Additional custom styles if needed */  
