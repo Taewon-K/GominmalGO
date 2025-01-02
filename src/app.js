@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
             url: `https://gominmalgo.fly.dev/assistant/`,
             data: {
                 'message': message
-            }
+            },
+            withCredentials: true
         })
         .then((response) => {
             console.log(response)
