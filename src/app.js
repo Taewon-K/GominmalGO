@@ -13,9 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
         userBubble.textContent = message;
         userBubble.classList.remove('hidden');
         systemBubble.classList.add('hidden');
+        systemBubble.style.display = 'none';
         // 텍스트 영역 축소
         userInput.style.height = '100px';
         userInput.value = '';
+
+        // 로딩 링 표시
+        const loadingRing = document.getElementById('loading-ring');
+        loadingRing.style.display = 'block';
 
         axios({
             method: 'post',
@@ -26,11 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
             withCredentials: true
         })
         .then((response) => {
+            // 로딩 링 숨기기
+            loadingRing.style.display = 'none';
+            
             console.log(response);
             const messageForm = document.getElementById('message-form');
             const systemBubble = document.getElementById('system-bubble');
             
             systemBubble.classList.remove('hidden');
+            systemBubble.style.display = 'block';
             systemBubble.textContent = response.data.context;
 
             // 타입별 배경색 설정
@@ -41,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 3: '#f3e5f5'
             };
             systemBubble.style.backgroundColor = colors[response.data.type];
-            systemBubble.style.display = 'block';
 
             // type 조건 처리
             if (response.data.type === 0) {
@@ -73,8 +81,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch((error) => {
-            console.log(error)
-            alert('오류가 발생했습니다. 다시 시도해주세요.')
+            // 에러 시에도 로딩 링 숨기기
+            loadingRing.style.display = 'none';
+            console.log(error);
+            alert('오류가 발생했습니다. 다시 시도해주세요.');
         })
     }
 
