@@ -28,28 +28,39 @@ document.addEventListener('DOMContentLoaded', function() {
         .then((response) => {
             console.log(response);
             const messageForm = document.getElementById('message-form');
+            const systemBubble = document.getElementById('system-bubble');
             
-            // 모든 타입에 대해 시스템 버블 표시
-            systemBubble.textContent = response.data.content;
             systemBubble.classList.remove('hidden');
+            systemBubble.textContent = response.data.content;
 
             // 타입별 배경색 설정
             const colors = {
-                0: '#ffcdd2', // 빨간색
-                1: '#fff9c4', // 연한 노란색
-                2: '#e3f2fd', // 연한 파란색
-                3: '#f3e5f5'  // 연한 보라색
+                0: '#ffcdd2',
+                1: '#fff9c4',
+                2: '#e3f2fd',
+                3: '#f3e5f5'
             };
             systemBubble.style.backgroundColor = colors[response.data.type];
+            systemBubble.style.display = 'block';
 
-            // type이 2일 때만 버튼으로 교체
-            if (response.data.type === 2) {
-                messageForm.innerHTML = `
-                    <div class="button-container">
-                        <button type="button" class="response-btn" id="btn-yes">처음으로</button>
-                        <button type="button" class="response-btn" id="btn-no">지도보기</button>
-                    </div>
+            // type 조건 처리
+            if (response.data.type === 0) {
+                systemBubble.textContent = '고민을 입력해주세요.';
+            } else if (response.data.type === 2) {
+                // textarea 요소 제거
+                const textArea = messageForm.querySelector('textarea');
+                const submitButton = messageForm.querySelector('button[type="submit"]');
+                if (textArea) textArea.remove();
+                if (submitButton) submitButton.remove();
+
+                // 버튼 컨테이너 생성 및 추가
+                const buttonContainer = document.createElement('div');
+                buttonContainer.className = 'button-container';
+                buttonContainer.innerHTML = `
+                    <button type="button" class="btn btn-info" id="btn-yes" href="https://gominmalgo.vercel.app/">처음으로</button>
+                    <button type="button" class="btn btn-Success" id="btn-no">지도보기</button>
                 `;
+                messageForm.appendChild(buttonContainer);
             }
         })
         .catch((error) => {
