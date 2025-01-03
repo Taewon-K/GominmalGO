@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { initializeApp } from './hospital.js';
+import hospitalUrl from 'url:../hospital.html';
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -74,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const buttonContainer = document.createElement('div');
                 buttonContainer.className = 'button-container';
                 buttonContainer.innerHTML = `
-                    <button type="button" class="btn btn-info btn-home" id="btn-yes" href="https://gominmalgo.vercel.app/">처음으로</button>
-                    <button type="button" class="btn btn-Success btn-map" id="btn-no">지도보기</button>
+                    <button type="button" class="btn btn-info btn-home" id="btn-home">처음으로</button>
+                    <button type="button" class="btn btn-Success btn-map" id="btn-map">지도보기</button>
                 `;
                 messageForm.appendChild(buttonContainer);
 
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 document.getElementById('btn-map').addEventListener('click', () => {
-                    window.location.href = '/map';
+                    window.location.href = hospitalUrl;
                 });
             
             }
