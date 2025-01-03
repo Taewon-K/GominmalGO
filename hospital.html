@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오 지도 API - 정신건강의학과 찾아보기</title>
+    
+    <!-- Tailwind CSS 및 Bootstrap CSS 링크 -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles.css">
+
+    <!-- 카카오맵 로드 준비 -->
+    <script>
+        window.kakaoMapLoaded = new Promise((resolve) => {
+            window.initKakaoMap = function() {
+                console.log('카카오맵 초기화 시작');
+                resolve();
+            };
+        });
+    </script>
+
+    <!-- 카카오맵 SDK -->
+    <script 
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97ddf0ca6835d32fe6679e32096c1d76&libraries=services&autoload=false" 
+        onload="initKakaoMap()">
+    </script>
+
+    <!-- 스타일링 -->
+    <style>
+        #map { width: 100%; height: 500px; }
+    </style>
+</head>
+<body class="h-screen flex flex-col bg-gray-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark" style="background-color: #6FF2AA;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="src/sprout (2).png" alt="Icon" style="height: calc(1.5em + 0.75rem); width: auto; margin-right: 10px;">
+                <span style="font-weight: bold;">고민말GO</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main class="flex-1 overflow-y-auto p-4">
+        <h1 class="hospital-search-title text-2xl font-bold">주변 정신건강의학과 검색</h1>
+        
+        <!-- 검색 컨테이너 수정 -->
+        <div class="search-container mb-4">
+            <div class="flex max-w-md mx-auto relative">
+                
+                <input 
+                    type="text" 
+                    id="location-search" 
+                    placeholder="지역명을 입력하세요 (예: 강남구)" 
+                    class="w-full p-2 border rounded-[13px] focus:outline-none rounded-lg focus:border-blue-500 z-10 relative bg-white"
+                >
+                <button 
+                    id="search-button"
+                    class="absolute right-0 translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 z-20 w-[90px]"
+                >
+                    검색
+                </button>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <button id="find-hospitals" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-[13px] hover:bg-green-600 mx-auto block">
+            현재 위치 주변 정신건강의학과 검색
+        </button>
+    </main>
+
+    <!-- 메인 스크립트 -->
+    <script type="module">
+        import { initializeApp } from './src/hospital.js';
+        
+        async function init() {
+            try {
+                console.log('DOM 로드됨, 카카오맵 초기화 대기...');
+                await window.kakaoMapLoaded;
+                console.log('카카오맵 준비 완료');
+                
+                // 카카오맵 로드
+                await new Promise((resolve) => {
+                    kakao.maps.load(() => {
+                        console.log('카카오맵 로드 완료');
+                        resolve();
+                    });
+                });
+                
+                console.log('앱 초기화 시작');
+                initializeApp();
+            } catch (error) {
+                console.error('초기화 중 오류 발생:', error);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>

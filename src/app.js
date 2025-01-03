@@ -1,4 +1,13 @@
 import axios from 'axios';
+import { initializeApp } from './hospital.js';
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        initializeApp();
+    } catch (error) {
+        console.error('앱 초기화 중 오류 발생:', error);
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     const messageForm = document.getElementById('message-form');
